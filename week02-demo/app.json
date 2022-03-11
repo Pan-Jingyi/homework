@@ -1,0 +1,35 @@
+{
+  "pages":[
+    "pages/weather/weather",
+    "pages/index/index",
+    "pages/logs/logs"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "小潘智能AI",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#ffa500",
+   "list": [
+    {
+      "pagePath": "pages/weather/weather",
+      "text": "AI天气",
+      "iconPath": "images/天气.png",
+      "selectedIconPath": "images/天气（1）.png"
+    },
+    {
+      "pagePath": "pages/index/index",
+      "text": "AI识图",
+      "selectedIconPath": "images/相机 (1).png",
+      "iconPath": "images/相机 .png"
+    }
+   ]
+    
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
