@@ -5,20 +5,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    geo_location:"113.678280,23.628439",
+    weather_now:""
   },
+
+//高德API
+location:function() {
+  var that = this
+  wx.request({
+    url: 'https://restapi.amap.com/v3/geocode/geo?', //高德地理编码api接口
+    data: {
+      Key: '49f383e0163e87aa6b0fc629ddd35a34',
+      address: '广东省广州市从化区广州南方学院'
+    },
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success (res) {
+      console.log(res.data.geocodes[0].location)//打印数据
+      that.setData({
+        geo_location:res.data.geocodes[0].location
+      })
+    }
+  })
+},
+
+//和风天气
+weather:function() {
+  var that = this
+  wx.request({
+      url: 'https://devapi.qweather.com/v7/weather/now?', //和风天气实时天气API接口
+      data: {
+        key: '8ff418e9bdb54a4592c70f1ca0ebe0c7',
+        location: that.data.geo_location
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        console.log(res.data.now)//打印数据
+        that.setData({
+          weather_now:res.data.now
+        })
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.request({
-      url: 'https://devapi.qweather.com/v7/weather/now?',//从化实时天气
-      data:{
-        key:'8ff418e9bdb54a4592c70f1ca0ebe0c7',
-        location:'113.58738,23.54528'
-      }
-    })
+    var that = this//that 指函数内部，this指页面page
+    that.location()
+    that.weather()
   },
 
   /**
